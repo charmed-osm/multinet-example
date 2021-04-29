@@ -1,0 +1,57 @@
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: net1
+  namespace: test-multinet
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "net1",
+    "type": "macvlan",
+    "master": "wlo1",
+    "mode": "bridge",
+    "ipam": {
+      "type": "host-local",
+      "dataDir": "/tmp/microk8s-multus-test-nets",
+      "subnet": "10.111.111.0/24"
+    }
+  }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: net2
+  namespace: test-multinet
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "net2",
+    "type": "macvlan",
+    "master": "wlo1",
+    "mode": "bridge",
+    "ipam": {
+      "type": "host-local",
+      "dataDir": "/tmp/microk8s-multus-test-nets",
+      "subnet": "10.222.222.0/24"
+    }
+  }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: net3
+  namespace: test-multinet
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "net3",
+    "type": "macvlan",
+    "master": "wlo1",
+    "mode": "bridge",
+    "ipam": {
+      "type": "host-local",
+      "dataDir": "/tmp/microk8s-multus-test-nets",
+      "subnet": "10.233.233.0/24"
+    }
+  }'

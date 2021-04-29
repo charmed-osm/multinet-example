@@ -1,0 +1,92 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: multus-alpine-1
+  name: multus-alpine-1
+  namespace: test-multinet
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[
+      {
+         "name" : "net1",
+         "interface": "eth1",
+         "ips": ["10.111.111.111"]
+      },
+      {
+         "name" : "net2",
+         "interface": "eth2",
+         "ips": ["10.222.222.222"]
+      }
+    ]'
+spec:
+  containers:
+    - name: multus-alpine-1
+      image: alpine:latest
+      command: ["sh"]
+      args: ["-c", "while [ true ]; do ifconfig; sleep 3; done"]
+  restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: multus-alpine-2
+  name: multus-alpine-2
+  namespace: test-multinet
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[
+      {
+         "name" : "net1",
+         "interface": "eth1",
+         "ips": ["10.111.111.112"]
+      },
+      {
+         "name" : "net2",
+         "interface": "eth2",
+         "ips": ["10.222.222.223"]
+      }
+    ]'
+spec:
+  containers:
+    - name: multus-alpine-2
+      image: alpine:latest
+      command: ["sh"]
+      args: ["-c", "while [ true ]; do ifconfig; sleep 3; done"]
+  restartPolicy: Always
+
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: multus-alpine-3
+  name: multus-alpine-3
+  namespace: test-multinet
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[
+      {
+         "name" : "net1"
+      },
+      {
+         "name" : "net2",
+         "interface": "eth2",
+         "ips": ["10.222.222.227"]
+      },
+      {
+         "name" : "net3",
+         "interface": "eth3"
+      }
+    ]'
+spec:
+  containers:
+    - name: multus-alpine-3
+      image: alpine:latest
+      command: ["sh"]
+      args: ["-c", "while [ true ]; do ifconfig; sleep 3; done"]
+  restartPolicy: Always
+
+

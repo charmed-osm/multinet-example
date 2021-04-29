@@ -1,0 +1,27 @@
+# Copyright 2021 David Garcia
+# See LICENSE file for licensing details.
+#
+# TEMPLATE-TODO: change this example to suit your needs.
+# If you don't need a config, you can remove the file entirely.
+# It ties in to the example _on_config_changed handler in src/charm.py
+#
+# Learn more about config at: https://juju.is/docs/sdk/config
+
+options:
+  networks:
+    type: string
+    description: |
+      List the networks to which the Workload Pod will be attached to.
+
+      Example: <network1>[:<interface1>][,<network2>[:<interface2>],...] where:
+        <network1>, <network2>:     NetworkAttachmentDefinition names in the K8s cluster.
+        <interface1>, <interface2>: Interface names inside the pods (Default=network name)
+
+  static_ips:
+    type: string
+    description: |
+      Comma-separated tupple of network name and static ip
+
+      Example: <network1>:<static_ip1>[,<network2>:<static_ip2>,...] where:
+        <network1>, <network2>:     NetworkAttachmentDefinition names in the K8s cluster.
+        <static_ip1>, <static_ip2>: Static IP

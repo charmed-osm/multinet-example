@@ -1,0 +1,9 @@
+# Copyright 2021 David Garcia
+# See LICENSE file for licensing details.
+name: multinet
+description: |
+  TEMPLATE-TODO: fill out the charm's description
+summary: |
+  TEMPLATE-TODO: fill out the charm's summary
+series: [kubernetes]
+
